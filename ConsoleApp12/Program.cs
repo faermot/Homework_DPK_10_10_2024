@@ -280,11 +280,50 @@ namespace ConsoleApp12
             Console.ReadKey();
         }
 
+        static void Task8()
+        {
+            Console.WriteLine("Задание №8");
+
+            Random rnd = new Random();
+            int size = rnd.Next(1, 11);
+            double[,] array = new double[size, size];
+            double product = 1;
+
+            Console.WriteLine("\nИсходный массив:");
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    array[i, j] = rnd.NextDouble() * 50;
+                    Console.Write($"{array[i, j]:F4} ");
+                }
+                Console.WriteLine();
+            }
+
+            for (int j = 0; j < size; j++)
+            {
+                double min = array[0, j];
+                for (int i = 1; i < size; i++)
+                {
+                    if (array[i, j] < min)
+                    {
+                        min = array[i, j];
+                    }
+                }
+                product *= min;
+            }
+
+            Console.WriteLine($"\nПроизведение наименьших элементов каждого столбца массива: {product:F4}");
+
+            Console.ReadKey();
+        }
+
+
         static void Main(string[] args)
         {
             while (true) {
                 Console.Clear();
-                Console.Write("Выберите задание (1-7): ");
+                Console.Write("Выберите задание (1-8): ");
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -313,6 +352,10 @@ namespace ConsoleApp12
 
                     case "7":
                         Task7();
+                        break;
+
+                    case "8":
+                        Task8();
                         break;
 
                     default:
