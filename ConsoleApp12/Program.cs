@@ -232,11 +232,59 @@ namespace ConsoleApp12
             Console.ReadKey();
         }
 
+        static void Task7()
+        {
+            Console.WriteLine("Задание №7");
+
+            Random rnd = new Random();
+            int[,] array = new int[3, 4];
+            int[] temp_array1 = new int[array.GetLength(1)];
+            int[] temp_array2 = new int[array.GetLength(1)];
+
+            Console.WriteLine("\nИсходный массив: ");
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = rnd.Next(-50, 51);
+                    if (i == 0)
+                    {
+                        temp_array1[j] = array[i, j];
+                    }
+                    if (i == 2)
+                    {
+                        temp_array2[j] = array[i, j];
+                    }
+                    Console.Write($" {array[i, j]}");
+                }
+                Console.WriteLine();
+            }
+            
+
+            int index_1 = Array.IndexOf(temp_array1, temp_array1.Min());
+            int index_2 = Array.IndexOf(temp_array2, temp_array2.Min());
+
+            array.SetValue(temp_array1[index_1], 2, index_2);
+            array.SetValue(temp_array2[index_2], 0, index_1);
+
+            Console.WriteLine("\nИтоговый массив: ");
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write($" {array[i, j]}");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+
         static void Main(string[] args)
         {
             while (true) {
                 Console.Clear();
-                Console.Write("Выберите задание (1-5): ");
+                Console.Write("Выберите задание (1-7): ");
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -261,6 +309,10 @@ namespace ConsoleApp12
 
                     case "6":
                         Task6();
+                        break;
+
+                    case "7":
+                        Task7();
                         break;
 
                     default:
